@@ -108,7 +108,7 @@ Resources:
           sudo rm -rf udacity-tamplate
       ImageId: ami-0747bdcabd34c712a
       KeyName: !Ref KeyPairPrivate
-      IamInstanceProfile: !Ref IamInstanceProfile
+      IamInstanceProfile: !Ref IamInstanceProfile 
       SecurityGroups:
       - Ref: WebServerSecGroup
       InstanceType: t3.small

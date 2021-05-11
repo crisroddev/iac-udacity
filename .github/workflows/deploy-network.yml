@@ -83,7 +83,7 @@ jobs:
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
         name: "service-network-deploy"
-        template: ./network/network.yaml
+        template: ./networking/networking.yaml
         no-fail-on-empty-changeset: "1"
         parameter-overrides: >-
           EnvironmentName=poc-test,

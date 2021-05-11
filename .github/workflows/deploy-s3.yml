@@ -23,6 +23,7 @@ jobs:
     - name: List
       run: |
         ls
+        ls templates
     - name: AWS List
       run: |
         aws s3 ls

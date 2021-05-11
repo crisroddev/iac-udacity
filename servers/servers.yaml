@@ -111,9 +111,9 @@ Resources:
       IamInstanceProfile: !Ref IamInstanceProfile 
       SecurityGroups:
       - Ref: WebServerSecGroup
-      InstanceType: t3.small
+      InstanceType: t2.micro
       BlockDeviceMappings:
-      - DeviceName: "/dev/sdk"
+      - DeviceName: "/dev/sda1"
         Ebs:
             VolumeSize: "10"
   

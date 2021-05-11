@@ -241,7 +241,7 @@ Resources:
     - IamInstanceProfile
     Properties:
       IamInstanceProfile: !Ref IamInstanceProfile
-      ImageId: ami-0a634ae95e11c6f91
+      ImageId: ami-09e67e426f25ce0d7
       InstanceType: t3.small
       KeyName: !Ref KeyPairBastion
       SecurityGroupIds:

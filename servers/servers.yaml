@@ -106,7 +106,7 @@ Resources:
           cd udacity-tamplate
           sudo mv index.html home.css /var/www/html/
           sudo rm -rf udacity-tamplate
-      ImageId: ami-0a634ae95e11c6f91
+      ImageId: ami-0747bdcabd34c712a
       KeyName: !Ref KeyPairPrivate
       IamInstanceProfile: !Ref IamInstanceProfile
       SecurityGroups:

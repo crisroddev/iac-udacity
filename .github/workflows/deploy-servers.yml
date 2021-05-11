@@ -46,10 +46,10 @@ jobs:
           EnvironmentName=poc-test,
           ServersMinSize=2,
           ServersMaxSize=5,
-          ServersDesiredCpacity=3
+          ServersDesiredCpacity=3,
           S3PatchToBucket=s3://s3-hawebapp-cris-test,
           KeyPairBastion=BastionKey,
-          KeyPairPrivate=BastionKey
+          KeyPairPrivate=BastionKey,
           DNSProtocol=http://,
           NetworkAccessIP=0.0.0.0/0
   deploy_servers:
@@ -92,9 +92,9 @@ jobs:
           EnvironmentName=poc-test,
           ServersMinSize=2,
           ServersMaxSize=5,
-          ServersDesiredCpacity=3
+          ServersDesiredCpacity=3,
           S3PatchToBucket=s3://s3-hawebapp-cris-test,
           KeyPairBastion=BastionKey,
-          KeyPairPrivate=BastionKey
+          KeyPairPrivate=BastionKey,
           DNSProtocol=http://,
           NetworkAccessIP=0.0.0.0/0

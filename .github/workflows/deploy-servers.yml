@@ -43,7 +43,15 @@ jobs:
         no-fail-on-empty-changeset: "1"
         no-execute-changeset: "1"
         parameter-overrides: >-
-          EnvironmentName=poc-test
+          EnvironmentName=poc-test,
+          ServersMinSize=2,
+          ServersMaxSize=5,
+          ServersDesiredCpacity=3
+          S3PatchToBucket=s3://s3-hawebapp-cris-test,
+          KeyPairBastion=BastionKey,
+          KeyPairPrivate=BastionKey
+          DNSProtocol=http://,
+          NetworkAccessIP=0.0.0.0/0
   deploy_servers:
     name: Deploy servers-stack
     if: contains( github.ref, 'develop') || contains( github.ref, 'main')
@@ -81,4 +89,12 @@ jobs:
         template: ./servers/servers.yaml
         no-fail-on-empty-changeset: "1"
         parameter-overrides: >-
-          EnvironmentName=poc-test
+          EnvironmentName=poc-test,
+          ServersMinSize=2,
+          ServersMaxSize=5,
+          ServersDesiredCpacity=3
+          S3PatchToBucket=s3://s3-hawebapp-cris-test,
+          KeyPairBastion=BastionKey,
+          KeyPairPrivate=BastionKey
+          DNSProtocol=http://,
+          NetworkAccessIP=0.0.0.0/0

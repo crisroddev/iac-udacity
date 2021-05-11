@@ -45,10 +45,10 @@ jobs:
         parameter-overrides: >-
           EnvironmentName=poc-test,
           VpcCIDR=10.0.0.0/16
-          PublicSubnet1CIDR=10.0.1.0/24
-          PublicSubnet2CIDR=10.0.2.0/24
-          PrivateSubnet1CIDR=10.0.3/24
-          PrivateSubnet2CIDR=10.0.4/24
+          PublicSubnet1CIDR=10.0.0.0/24
+          PublicSubnet2CIDR=10.0.0.0/24
+          PrivateSubnet1CIDR=10.0.0.0/24
+          PrivateSubnet2CIDR=10.0.0.0/24
   deploy_network:
     name: Deploy network-stack
     if: contains( github.ref, 'develop') || contains( github.ref, 'main')
@@ -90,5 +90,5 @@ jobs:
           VpcCIDR=10.0.0.0/16
           PublicSubnet1CIDR=10.0.1.0/24
           PublicSubnet2CIDR=10.0.2.0/24
-          PrivateSubnet1CIDR=10.0.3/24
-          PrivateSubnet2CIDR=10.0.4/24
+          PrivateSubnet1CIDR=10.0.3.0/24
+          PrivateSubnet2CIDR=10.0.4.0/24

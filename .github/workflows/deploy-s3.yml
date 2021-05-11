@@ -4,7 +4,7 @@ on:
   push:
     paths-ignore:
     - '**/*.md'
-  pull-requests:
+  pull_request:
     paths-ignore:
     - '**/*.md'
 jobs:

@@ -82,7 +82,7 @@ jobs:
       id: networking-service
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
-        name: "networking-service"
+        name: networking-service
         template: ./networking/netwroking.yml
         no-fail-on-empty-changeset: "1"
         parameter-overrides: >-

@@ -32,7 +32,7 @@ jobs:
         aws s3 rm s3://s3-hawebapp-cris-test/ --recursive
     - name: Upload Object
       run: |
-        aws s3 cp ./templates/udacity-tamplate.zip s3://s3-hawebapp-cris-test/ --recursive
+        aws s3 cp ./templates/udacity-tamplate.zip s3://s3-hawebapp-cris-test/
     - name: Uploaded
       run: |
         echo "S3 Uploaded Successfully"

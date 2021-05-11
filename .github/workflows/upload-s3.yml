@@ -1,0 +1,29 @@
+name: Deploy-Network
+on:
+  push:
+    paths-ignore:
+    - '**/*.md'
+  pull_request:
+    paths-ignore:
+    - '**/*.md'
+
+jobs:
+  Upload-S3:
+    name: Upload-template-s3
+    if: contains( github.ref, 'develop' ) || contains( github.ref, 'main' )
+    runs-on: ubutnu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Configure AWS Credentials
+      id: creds
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.CFM_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.CFM_AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    - name: Uploading
+      run: |
+        pwd
+  

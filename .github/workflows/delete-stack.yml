@@ -1,0 +1,27 @@
+name: cloudformation-delete-stack
+on:
+  workflow_dispatch:
+    inputs:
+      stack-name:
+        description: 'Include CFM Stack Name'
+        required: true
+        default: 'Change this with CFM Name'
+
+jobs:
+  stack-list:
+    name: List CFM Stacks
+    if: contains( github.event.inputs.stack-name, 'Change this with CFM Name' )
+    runs-on: ubuntu-latest
+    steps:
+    - name: Configure AWS Credentials
+      id: creds
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.CFM_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.CFM_AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    - name: List Stacks
+      id: list
+      run: !
+        aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE UPDATE_COMPLETE --max-items 1000 | jq -r 'StackSummaries[].StackName'
+      

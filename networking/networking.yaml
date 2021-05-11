@@ -1,5 +1,5 @@
 Description: >
-Testing Github Actions
+  Testing Github Actions
 Parameters:
   EnvironmentName:
     Description: EnvironmentName that will be prefixed to resources

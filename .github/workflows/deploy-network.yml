@@ -1,4 +1,4 @@
-name: deploy-infra-network
+name: Deploy-Network
 on:
   push:
     paths-ignore:
@@ -24,7 +24,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.CFM_AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.CFM_AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2
+        aws-region: us-east-1
 
     - name: Configure environment name
       id: env-name
@@ -38,21 +38,21 @@ jobs:
       id: service-review
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
-        name: "msvc-test"
-        template: ./networking/networking.yml
+        name: "deploy-netwrok-test"
+        template: ./netwroking/networking.yaml
         no-fail-on-empty-changeset: "1"
         no-execute-changeset: "1"
         parameter-overrides: >-
-          EnvironmentName=poc-test
-          VpcCIDR=10.0.0.0/16,
-          PublicSubnet1CIDR=10.0.0.0/24,
-          PublicSubnet2CIDR=10.0.0.0/24,
-          PrivateSubnet1CIDR=10.0.0.0/24,
-          PrivateSubnet2CIDR=10.0.0.0/24
-          
-  deploy_networking:
-    name: Deploy Networking Cloudformation
+          EnvironmentName=poc-test,
+          VpcCIDR=10.0.0.0/16
+          PublicSubnet1CIDR=10.0.1.0/24
+          PublicSubnet2CIDR=10.0.2.0/24
+          PrivateSubnet1CIDR=10.0.3/24
+          PrivateSubnet2CIDR=10.0.4/24
+  deploy_network:
+    name: Deploy network-stack
     if: contains( github.ref, 'develop') || contains( github.ref, 'main')
+    #needs: [html-publish, artifactory_deployment]
     runs-on: ubuntu-latest
     outputs:
       env-name: ${{ steps.env-name.outputs.environment }}
@@ -78,17 +78,17 @@ jobs:
         echo "::set-output name=environment::$ENVIRONMENT"
         sleep $[ ( $RANDOM % 10 )  + 1 ]s
     
-    - name: networking service
-      id: networking-service
+    - name: Service bff-auth-register Deployment
+      id: bff-auth-register
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
-        name: networking-service
-        template: ./networking/netwroking.yml
+        name: "bff-auth-register"
+        template: ./commons/cfm_fargate_svc-stack.yml
         no-fail-on-empty-changeset: "1"
         parameter-overrides: >-
-          EnvironmentName=poc-test
-          VpcCIDR=10.0.0.0/16,
-          PublicSubnet1CIDR=10.0.1.0/24,
-          PublicSubnet2CIDR=10.0.2.0/24,
-          PrivateSubnet1CIDR=10.0.3.0/24,
-          PrivateSubnet2CIDR=10.0.4.0/24
+          EnvironmentName=poc-test,
+          VpcCIDR=10.0.0.0/16
+          PublicSubnet1CIDR=10.0.1.0/24
+          PublicSubnet2CIDR=10.0.2.0/24
+          PrivateSubnet1CIDR=10.0.3/24
+          PrivateSubnet2CIDR=10.0.4/24

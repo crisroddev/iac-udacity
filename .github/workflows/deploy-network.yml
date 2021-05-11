@@ -78,12 +78,12 @@ jobs:
         echo "::set-output name=environment::$ENVIRONMENT"
         sleep $[ ( $RANDOM % 10 )  + 1 ]s
     
-    - name: Service bff-auth-register Deployment
-      id: bff-auth-register
+    - name: Service network
+      id: service-network
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
-        name: "bff-auth-register"
-        template: ./commons/cfm_fargate_svc-stack.yml
+        name: "service-network-deploy"
+        template: ./network/network.yaml
         no-fail-on-empty-changeset: "1"
         parameter-overrides: >-
           EnvironmentName=poc-test,
